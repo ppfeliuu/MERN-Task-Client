@@ -7,8 +7,7 @@ import {
   GET_PROJECTS,
   ADD_PROJECT,
   VALIDATE_FORM,
-  CURRENT_PROJECT,
-  DELETE_PROJECT
+  CURRENT_PROJECT
 } from "../../types";
 
 const ProjectState = props => {
@@ -62,17 +61,10 @@ const ProjectState = props => {
   };
 
   //Select to set project selected
-  const projectSelected = currentprojectId => {
+  const projectSelected = currentproject => {
     dispatch({
       type: CURRENT_PROJECT,
-      payload: currentprojectId
-    })
-  }
-
-  const deleteProject = currentprojectId => {
-    dispatch({
-      type: DELETE_PROJECT,
-      payload: currentprojectId
+      payload: currentproject
     })
   }
 
@@ -87,8 +79,7 @@ const ProjectState = props => {
         getProjects,
         addProject,
         showError,
-        projectSelected,
-        deleteProject
+        projectSelected
       }}
     >
       {props.children}

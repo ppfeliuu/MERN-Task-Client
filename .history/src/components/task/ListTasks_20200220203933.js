@@ -31,10 +31,6 @@ const ListTasks = () => {
     }
   ];
 
-  const handleDeleteProject = () => {
-      deleteProject(curProject.id)
-  }
-
   return (
     <>
       <h2>Project: {curProject.name}</h2>

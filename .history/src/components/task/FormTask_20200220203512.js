@@ -6,12 +6,12 @@ const FormTask = () => {
   const { currentproject } = projectsContext;
 
   //No project selected
-  if(!currentproject) return null;
+  if(!currentproject) return <h1>Select a project</h1>
 
   //Array destructuring for project name
   const [curProject] = currentproject;
 
-
+  
   return (
     <div className="formulario">
       <form>

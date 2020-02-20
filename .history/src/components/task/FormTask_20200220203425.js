@@ -3,14 +3,7 @@ import projectContext from "../../context/projects/projectContext";
 
 const FormTask = () => {
   const projectsContext = useContext(projectContext);
-  const { currentproject } = projectsContext;
-
-  //No project selected
-  if(!currentproject) return null;
-
-  //Array destructuring for project name
-  const [curProject] = currentproject;
-
+  const {  } = projectsContext;
 
   return (
     <div className="formulario">

@@ -31,10 +31,6 @@ const ListTasks = () => {
     }
   ];
 
-  const handleDeleteProject = () => {
-      deleteProject(curProject.id)
-  }
-
   return (
     <>
       <h2>Project: {curProject.name}</h2>
@@ -48,7 +44,7 @@ const ListTasks = () => {
           task.map(t => <Task task={t} />)
         )}
       </ul>
-      <button type="button" className="btn btn-eliminar" onClick={handleDeleteProject}>
+      <button type="button" className="btn btn-eliminar">
         Delete Project &times;
       </button>
     </>

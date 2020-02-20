@@ -13,7 +13,7 @@ const NewProject = () => {
 
   const { name } = project;
 
-  const onChangeProject = e => {
+  const onChangeProject = e => {     
     setProject({
       ...project,
       [e.target.name]: e.target.value
@@ -22,25 +22,20 @@ const NewProject = () => {
 
   const onSubmitProject = e => {
     e.preventDefault();
-
+    
     //valid project
-    if (name === "") {
-      showError();
-      return;
-    }
+    if(name === '') return;
 
+    
     // add state
     addProject(project);
 
     //reset form
-    setProject({
-      name: ""
-    });
   };
 
   const onClickShowForm = () => {
-    showForm();
-  };
+      showForm();
+  }
 
   return (
     <Fragment>
@@ -65,12 +60,9 @@ const NewProject = () => {
           <input
             type="submit"
             className="btn btn-block btn-primario"
-            value="Add Project"
+            value="Add Project"            
           />
         </form>
-      ) : null}
-      {errorform ? (
-        <p className="mensaje error">Project name is mandatory</p>
       ) : null}
     </Fragment>
   );

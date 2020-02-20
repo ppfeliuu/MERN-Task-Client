@@ -87,8 +87,7 @@ const ProjectState = props => {
         getProjects,
         addProject,
         showError,
-        projectSelected,
-        deleteProject
+        projectSelected
       }}
     >
       {props.children}

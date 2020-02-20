@@ -6,9 +6,7 @@ import {
   FORM_PROJECT,
   GET_PROJECTS,
   ADD_PROJECT,
-  VALIDATE_FORM,
-  CURRENT_PROJECT,
-  DELETE_PROJECT
+  VALIDATE_FORM
 } from "../../types";
 
 const ProjectState = props => {
@@ -61,34 +59,16 @@ const ProjectState = props => {
     dispatch({ type: VALIDATE_FORM });
   };
 
-  //Select to set project selected
-  const projectSelected = currentprojectId => {
-    dispatch({
-      type: CURRENT_PROJECT,
-      payload: currentprojectId
-    })
-  }
-
-  const deleteProject = currentprojectId => {
-    dispatch({
-      type: DELETE_PROJECT,
-      payload: currentprojectId
-    })
-  }
-
   return (
     <projectContext.Provider
       value={{
         form: state.form,
         projects: state.projects,
         errorform: state.errorform,
-        currentproject: state.currentproject,
         showForm,
         getProjects,
         addProject,
-        showError,
-        projectSelected,
-        deleteProject
+        showError
       }}
     >
       {props.children}

@@ -5,13 +5,6 @@ const FormTask = () => {
   const projectsContext = useContext(projectContext);
   const { currentproject } = projectsContext;
 
-  //No project selected
-  if(!currentproject) return null;
-
-  //Array destructuring for project name
-  const [curProject] = currentproject;
-
-
   return (
     <div className="formulario">
       <form>
