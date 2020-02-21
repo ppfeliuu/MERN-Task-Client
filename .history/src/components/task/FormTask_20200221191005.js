@@ -1,18 +1,13 @@
 import React, { useContext, useState } from "react";
 import projectContext from "../../context/projects/projectContext";
-import taskContext from "../../context/tasks/taskContext";
 
 const FormTask = () => {
   const projectsContext = useContext(projectContext);
   const { currentproject } = projectsContext;
 
-  const tasksContext = useContext(taskContext);
-  const { addTask } = tasksContext;
-
   //State form
   const [task, setTask] = useState({ name: "" });
 
-  //Destructuring from task
   const { name } = task;
 
   //No project selected
@@ -37,9 +32,6 @@ const FormTask = () => {
     //Pass validation
 
     //Add new task to state
-    task.projectId = curProject.id;
-    task.estado = false;
-    addTask(task);
 
     //reset form
   };
@@ -51,7 +43,7 @@ const FormTask = () => {
             type="text"
             className="input-text"
             placeholder="Task name..."
-            name="name"
+            name="nameTask"
             value={name}
             onChange={handleChange}
           />

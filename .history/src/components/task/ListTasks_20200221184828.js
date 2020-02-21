@@ -16,7 +16,11 @@ const ListTasks = () => {
 
   //Array destructuring for project name
   const [curProject] = currentproject;
- 
+
+  const tasks = [
+    
+  ];
+
   const handleDeleteProject = () => {
       deleteProject(curProject.id)
   }
@@ -26,12 +30,12 @@ const ListTasks = () => {
       <h2>Project: {curProject.name}</h2>
 
       <ul className="listado-tareas">
-        {tasksproject.length === 0 ? (
+        {tasks.length === 0 ? (
           <li className="tarea">
             <p>No Tasks</p>
           </li>
         ) : (
-          tasksproject.map(t => <Task task={t} />)
+          tasks.map(t => <Task task={t} />)
         )}
       </ul>
       <button type="button" className="btn btn-eliminar" onClick={handleDeleteProject}>

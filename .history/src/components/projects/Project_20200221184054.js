@@ -7,12 +7,11 @@ const Project = ({ project }) => {
   const { projectSelected } = projectsContext;
 
   const tasksContext = useContext(taskContext);
-  const { getTasks } = tasksContext;
 
   //Add project
   const selectProject = id => {
     projectSelected(id); //Set current project selected
-    getTasks(id); //Filter task when clicked
+
   }
 
   return (

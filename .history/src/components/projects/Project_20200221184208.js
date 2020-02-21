@@ -7,6 +7,7 @@ const Project = ({ project }) => {
   const { projectSelected } = projectsContext;
 
   const tasksContext = useContext(taskContext);
+
   const { getTasks } = tasksContext;
 
   //Add project

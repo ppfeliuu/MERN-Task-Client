@@ -6,9 +6,6 @@ const FormTask = () => {
   const projectsContext = useContext(projectContext);
   const { currentproject } = projectsContext;
 
-  const tasksContext = useContext(taskContext);
-  const { addTask } = tasksContext;
-
   //State form
   const [task, setTask] = useState({ name: "" });
 
@@ -37,9 +34,7 @@ const FormTask = () => {
     //Pass validation
 
     //Add new task to state
-    task.projectId = curProject.id;
-    task.estado = false;
-    addTask(task);
+
 
     //reset form
   };

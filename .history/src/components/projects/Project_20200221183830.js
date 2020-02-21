@@ -1,18 +1,15 @@
 import React, { useContext } from "react";
 import projectContext from "../../context/projects/projectContext";
-import taskContext from "../../context/tasks/taskContext";
+import taskContext from "../../context/tasks/tasksContext";
 
 const Project = ({ project }) => {
   const projectsContext = useContext(projectContext);
   const { projectSelected } = projectsContext;
 
-  const tasksContext = useContext(taskContext);
-  const { getTasks } = tasksContext;
-
   //Add project
   const selectProject = id => {
     projectSelected(id); //Set current project selected
-    getTasks(id); //Filter task when clicked
+
   }
 
   return (

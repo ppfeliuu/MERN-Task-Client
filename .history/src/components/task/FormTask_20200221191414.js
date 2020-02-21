@@ -37,7 +37,7 @@ const FormTask = () => {
     //Pass validation
 
     //Add new task to state
-    task.projectId = curProject.id;
+    task.projectId = curProject;
     task.estado = false;
     addTask(task);
 
