@@ -10,7 +10,6 @@ const ListProjects = () => {
 
   useEffect(() => {
     getProjects();
-    // eslint-disable-next-line
   }, []);
 
   //if project have items

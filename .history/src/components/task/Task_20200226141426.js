@@ -4,7 +4,7 @@ import projectContext from "../../context/projects/projectContext";
 
 const Task = ({ task }) => {
   const tasksContext = useContext(taskContext);
-  const { deleteTask, getTasks, changeStatusTask, saveCurrentTask } = tasksContext;
+  const { deleteTask, getTasks, changeStatusTask } = tasksContext;
 
   const projectsContext = useContext(projectContext);
   const { currentproject } = projectsContext;
@@ -28,11 +28,6 @@ const Task = ({ task }) => {
     changeStatusTask(task);
   }
 
-  //Add current task when user edit
-  const selectTask = task => {
-    saveCurrentTask(task);
-  }
-
   return (
     <li className="tarea sombra">
       <p>{task.name}</p>
@@ -50,7 +45,7 @@ const Task = ({ task }) => {
       </div>
 
       <div className="acciones">
-        <button type="button" className="btn btn-primario" onClick={() => selectTask(task)}>
+        <button type="button" className="btn btn-primario">
           Edit
         </button>
         <button

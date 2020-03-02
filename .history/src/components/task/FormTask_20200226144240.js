@@ -13,8 +13,7 @@ const FormTask = () => {
     addTask,
     validateTask,
     getTasks,
-    updateTask,
-    cleanCurrentTask
+    updateTask
   } = tasksContext;
 
   //Effect detect if there are a task selected
@@ -64,11 +63,7 @@ const FormTask = () => {
       task.estado = false;
       addTask(task);
     } else {
-      // Update current task selected
       updateTask(task);
-
-      // Clean current task selected
-      cleanCurrentTask();
     }
 
     //Get all task

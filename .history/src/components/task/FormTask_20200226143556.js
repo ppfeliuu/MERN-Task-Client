@@ -7,26 +7,19 @@ const FormTask = () => {
   const { currentproject } = projectsContext;
 
   const tasksContext = useContext(taskContext);
-  const {
-    currenttask,
-    errortask,
-    addTask,
-    validateTask,
-    getTasks,
-    updateTask,
-    cleanCurrentTask
-  } = tasksContext;
+  const { currenttask, errortask, addTask, validateTask, getTasks } = tasksContext;
 
   //Effect detect if there are a task selected
   useEffect(() => {
-    if (currenttask !== null) {
-      setTask(currenttask);
+    if(currenttask !=== null) {
+      setTask(currenttask)
     } else {
       setTask({
-        name: ""
-      });
+        name: ''
+      })
     }
-  }, [currenttask]);
+    
+  }, [currenttask])
 
   //State form
   const [task, setTask] = useState({ name: "" });
@@ -52,32 +45,23 @@ const FormTask = () => {
     e.preventDefault();
 
     //Validate
-    if (name.trim() === "") {
+    if(name.trim() === '') {
       validateTask();
       return;
-    }
+    }   
 
-    //Check edit or add
-    if (currenttask === null) {
-      //Add new task to state
-      task.projectId = curProject.id;
-      task.estado = false;
-      addTask(task);
-    } else {
-      // Update current task selected
-      updateTask(task);
-
-      // Clean current task selected
-      cleanCurrentTask();
-    }
+    //Add new task to state
+    task.projectId = curProject.id;
+    task.estado = false;
+    addTask(task);
 
     //Get all task
     getTasks(curProject.id);
 
     //reset form
     setTask({
-      name: ""
-    });
+      name: ''
+    })
   };
   return (
     <div className="formulario">
@@ -97,13 +81,11 @@ const FormTask = () => {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            value={currenttask ? "Edit Task" : "Add Task"}
+            value="Add Task"
           />
         </div>
       </form>
-      {errortask ? (
-        <p className="mensaje error">Task name is mandatory</p>
-      ) : null}
+      {errortask ? <p className="mensaje error">Task name is mandatory</p>: null}
     </div>
   );
 };

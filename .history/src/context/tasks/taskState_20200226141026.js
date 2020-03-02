@@ -7,10 +7,7 @@ import {
   ADD_TASK,
   VALIDATE_TASK,  
   DELETE_TASK,
-  STATUS_TASK,
-  CURRENT_TASK,
-  UPDATE_TASK,
-  CLEAN_TASK
+  STATUS_TASK
 } from "../../types";
 
 const TaskState = props => {
@@ -78,8 +75,7 @@ const TaskState = props => {
       }
     ],
     tasksproject: null,
-    errortask: false,
-    currenttask: null
+    errortask: false
   };
 
   const [state, dispatch] = useReducer(TaskReducer, initialState);
@@ -127,45 +123,17 @@ const TaskState = props => {
     })
   }
 
-  //Get current task for edit
-  const saveCurrentTask = task => {
-    dispatch({
-      type: CURRENT_TASK,
-      payload: task
-    })
-  }
-
-  //Update task
-  const updateTask = task => {
-    dispatch({
-      type: UPDATE_TASK,
-      payload: task
-    })
-  }
-
-  //Clean current task  
-  const cleanCurrentTask = () => {
-    dispatch({
-      type: CLEAN_TASK,
-
-    })
-  }
-
   return (
     <TaskContext.Provider
       value={{
         tasks: state.tasks,
         tasksproject: state.tasksproject,
         errortask: state.errortask,
-        currenttask: state.currenttask,
         getTasks,
         addTask,
         validateTask,
         deleteTask,
-        changeStatusTask,
-        saveCurrentTask,
-        updateTask,
-        cleanCurrentTask
+        changeStatusTask
       }}
     >
       {props.children}

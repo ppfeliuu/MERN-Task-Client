@@ -10,6 +10,7 @@ const ListProjects = () => {
 
   useEffect(() => {
     getProjects();
+
     // eslint-disable-next-line
   }, []);
 

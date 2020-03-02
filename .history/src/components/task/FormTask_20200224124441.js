@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import projectContext from "../../context/projects/projectContext";
 import taskContext from "../../context/tasks/taskContext";
 
@@ -7,26 +7,7 @@ const FormTask = () => {
   const { currentproject } = projectsContext;
 
   const tasksContext = useContext(taskContext);
-  const {
-    currenttask,
-    errortask,
-    addTask,
-    validateTask,
-    getTasks,
-    updateTask,
-    cleanCurrentTask
-  } = tasksContext;
-
-  //Effect detect if there are a task selected
-  useEffect(() => {
-    if (currenttask !== null) {
-      setTask(currenttask);
-    } else {
-      setTask({
-        name: ""
-      });
-    }
-  }, [currenttask]);
+  const { errortask, addTask, validateTask } = tasksContext;
 
   //State form
   const [task, setTask] = useState({ name: "" });
@@ -52,32 +33,22 @@ const FormTask = () => {
     e.preventDefault();
 
     //Validate
-    if (name.trim() === "") {
+    if(name.trim() === '') {
       validateTask();
       return;
     }
 
-    //Check edit or add
-    if (currenttask === null) {
-      //Add new task to state
-      task.projectId = curProject.id;
-      task.estado = false;
-      addTask(task);
-    } else {
-      // Update current task selected
-      updateTask(task);
+    //Pass validation
 
-      // Clean current task selected
-      cleanCurrentTask();
-    }
-
-    //Get all task
-    getTasks(curProject.id);
+    //Add new task to state
+    task.projectId = curProject.id;
+    task.estado = false;
+    addTask(task);
 
     //reset form
     setTask({
-      name: ""
-    });
+      name: ''
+    })
   };
   return (
     <div className="formulario">
@@ -97,13 +68,11 @@ const FormTask = () => {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            value={currenttask ? "Edit Task" : "Add Task"}
+            value="Add Task"
           />
         </div>
       </form>
-      {errortask ? (
-        <p className="mensaje error">Task name is mandatory</p>
-      ) : null}
+      {errortask ? <p className="mensaje error">Task name is mandatory</p>: null}
     </div>
   );
 };

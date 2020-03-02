@@ -4,7 +4,7 @@ import projectContext from "../../context/projects/projectContext";
 
 const Task = ({ task }) => {
   const tasksContext = useContext(taskContext);
-  const { deleteTask, getTasks, changeStatusTask, saveCurrentTask } = tasksContext;
+  const { deleteTask, getTasks, changeStatusTask } = tasksContext;
 
   const projectsContext = useContext(projectContext);
   const { currentproject } = projectsContext;
@@ -19,18 +19,7 @@ const Task = ({ task }) => {
 
   //Modify status task
   const changeStatus = task => {
-    if(task.estado) {
-      task.estado = false
-    } else {
-      task.estado = true
-    }
 
-    changeStatusTask(task);
-  }
-
-  //Add current task when user edit
-  const selectTask = task => {
-    saveCurrentTask(task);
   }
 
   return (
@@ -39,18 +28,18 @@ const Task = ({ task }) => {
 
       <div className="estado">
         {task.estado ? (
-          <button type="button" className="completo" onClick={() => changeStatus(task)}>
+          <button type="button" className="completo" onClick={changeStatus}>
             Complete
           </button>
         ) : (
-          <button type="button" className="incompleto" onClick={() => changeStatus(task)}>
+          <button type="button" className="incompleto" onClick={changeStatus}>
             Incomplete
           </button>
         )}
       </div>
 
       <div className="acciones">
-        <button type="button" className="btn btn-primario" onClick={() => selectTask(task)}>
+        <button type="button" className="btn btn-primario">
           Edit
         </button>
         <button

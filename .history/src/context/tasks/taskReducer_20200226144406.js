@@ -5,8 +5,7 @@ import {
   DELETE_TASK,
   STATUS_TASK,
   CURRENT_TASK,
-  UPDATE_TASK,
-  CLEAN_TASK
+  UPDATE_TASK
 } from "../../types";
 
 export default (state, action) => {
@@ -46,11 +45,6 @@ export default (state, action) => {
       return {
         ...state,
         currenttask: action.payload
-      };
-    case CLEAN_TASK:
-      return {
-        ...state,
-        currenttask: null
       };
     default:
       return state;

@@ -47,7 +47,7 @@ export default (state, action) => {
         ...state,
         currenttask: action.payload
       };
-    case CLEAN_TASK:
+      case CLEAN_TASK:
       return {
         ...state,
         currenttask: null

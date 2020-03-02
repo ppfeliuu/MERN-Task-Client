@@ -8,9 +8,7 @@ import {
   VALIDATE_TASK,  
   DELETE_TASK,
   STATUS_TASK,
-  CURRENT_TASK,
-  UPDATE_TASK,
-  CLEAN_TASK
+  CURRENT_TASK
 } from "../../types";
 
 const TaskState = props => {
@@ -135,22 +133,6 @@ const TaskState = props => {
     })
   }
 
-  //Update task
-  const updateTask = task => {
-    dispatch({
-      type: UPDATE_TASK,
-      payload: task
-    })
-  }
-
-  //Clean current task  
-  const cleanCurrentTask = () => {
-    dispatch({
-      type: CLEAN_TASK,
-
-    })
-  }
-
   return (
     <TaskContext.Provider
       value={{
@@ -163,9 +145,7 @@ const TaskState = props => {
         validateTask,
         deleteTask,
         changeStatusTask,
-        saveCurrentTask,
-        updateTask,
-        cleanCurrentTask
+        saveCurrentTask
       }}
     >
       {props.children}
