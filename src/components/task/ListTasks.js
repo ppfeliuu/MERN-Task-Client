@@ -19,7 +19,7 @@ const ListTasks = () => {
   const [curProject] = currentproject;
 
   const handleDeleteProject = () => {
-    deleteProject(curProject.id);
+    deleteProject(curProject._id);
   };
 
   return (

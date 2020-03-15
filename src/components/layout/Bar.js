@@ -1,17 +1,34 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
+import AuthContext from "../../context/authentication/authContext";
 
 const Bar = () => {
-    return (
-        <div>
-          <header className="app-header">
-              <p className="nombre-usuario">Hi <span>Pedro</span></p>
+  //get info auth
+  const authContext = useContext(AuthContext);
+  const { user, userAuth, logout } = authContext;
 
-              <nav className="nav-principal">
-                  <a href="#!">Sign out</a>
-              </nav>
-              </header>  
-        </div>
-    )
-}
+  useEffect(() => {
+    userAuth();
+    // eslint-disable-next-line
+  }, []);
 
-export default Bar
+  return (
+    <header className="app-header">
+      {user ? (
+        <p className="nombre-usuario">
+          Hi <span>{user.name}</span>
+        </p>
+      ) : null}
+
+      <nav className="nav-principal">
+        <button
+          className="btn btn-blank cerrar-sesion"
+          onClick={() => logout()}
+        >
+          Logout
+        </button>
+      </nav>
+    </header>
+  );
+};
+
+export default Bar;

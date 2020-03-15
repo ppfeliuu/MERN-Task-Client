@@ -1,83 +1,20 @@
 import React, { useReducer } from "react";
 import TaskContext from "./taskContext";
 import TaskReducer from "./taskReducer";
-import uuid from "uuid";
 import {
   TASKS_PROJECT,
   ADD_TASK,
-  VALIDATE_TASK,  
+  VALIDATE_TASK,
   DELETE_TASK,
-  STATUS_TASK,
   CURRENT_TASK,
   UPDATE_TASK,
   CLEAN_TASK
 } from "../../types";
+import clientAxios from "../../config/axios";
 
 const TaskState = props => {
   const initialState = {
-    tasks: [
-      {
-        id: 1,
-        name: "Elegir Plataforma",
-        estado: true,
-        projectId: 1
-      },
-      {
-        id: 2,
-        name: "Elegir Colores",
-        estado: false,
-        projectId: 2
-      },
-      {
-        id: 3,
-        name: "Elegir forma de pago",
-        estado: false,
-        projectId: 3
-      },
-      {
-        id: 4,
-        name: "Elegir Hosting",
-        estado: true,
-        projectId: 4
-      },
-      {
-        id: 5,
-        name: "Elegir Colores",
-        estado: false,
-        projectId: 2
-      },
-      {
-        id: 6,
-        name: "Elegir forma de pago",
-        estado: false,
-        projectId: 3
-      },
-      {
-        id: 7,
-        name: "Elegir Hosting",
-        estado: true,
-        projectId: 4
-      },
-      {
-        id: 8,
-        name: "Elegir Colores",
-        estado: false,
-        projectId: 2
-      },
-      {
-        id: 9,
-        name: "Elegir forma de pago",
-        estado: false,
-        projectId: 1
-      },
-      {
-        id: 10,
-        name: "CCC",
-        estado: true,
-        projectId: 3
-      }
-    ],
-    tasksproject: null,
+    tasksproject: [],
     errortask: false,
     currenttask: null
   };
@@ -87,20 +24,31 @@ const TaskState = props => {
   //Functions
 
   //Get project tasks
-  const getTasks = projectId => {
-    dispatch({
-      type: TASKS_PROJECT,
-      payload: projectId
-    });
+  const getTasks = async project => {
+    try {
+      const res = await clientAxios.get("/api/tasks", { params: { project } });
+      console.log(res);
+      dispatch({
+        type: TASKS_PROJECT,
+        payload: res.data.tasks
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //Add new task
-  const addTask = task => {
-    task.id = uuid.v4();
-    dispatch({
-      type: ADD_TASK,
-      payload: task
-    });
+  const addTask = async task => {
+    try {
+      await clientAxios.post("api/tasks", task);
+      // console.log(res);
+      dispatch({
+        type: ADD_TASK,
+        payload: task
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //Validate task
@@ -111,50 +59,51 @@ const TaskState = props => {
   };
 
   //Delete task by ID
-  const deleteTask = id => {    
-    dispatch({
-      type: DELETE_TASK,
-      payload: id
-    });
+  const deleteTask = async (id, project) => {
+    try {
+      await clientAxios.delete(`api/tasks/${id}`, { params: { project } });
+
+      dispatch({
+        type: DELETE_TASK,
+        payload: id
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
-
-  // Change status task
-  const changeStatusTask = task => {
-    dispatch({
-      type: STATUS_TASK,
-      payload: task
-
-    })
-  }
 
   //Get current task for edit
   const saveCurrentTask = task => {
     dispatch({
       type: CURRENT_TASK,
       payload: task
-    })
-  }
+    });
+  };
 
   //Update task
-  const updateTask = task => {
-    dispatch({
-      type: UPDATE_TASK,
-      payload: task
-    })
-  }
+  const updateTask = async task => {
+    try {
+      const res = await clientAxios.put(`api/tasks/${task._id}`, task);
+      console.log(res);
+      dispatch({
+        type: UPDATE_TASK,
+        payload: res.data.task
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  //Clean current task  
+  //Clean current task
   const cleanCurrentTask = () => {
     dispatch({
-      type: CLEAN_TASK,
-
-    })
-  }
+      type: CLEAN_TASK
+    });
+  };
 
   return (
     <TaskContext.Provider
       value={{
-        tasks: state.tasks,
         tasksproject: state.tasksproject,
         errortask: state.errortask,
         currenttask: state.currenttask,
@@ -162,7 +111,6 @@ const TaskState = props => {
         addTask,
         validateTask,
         deleteTask,
-        changeStatusTask,
         saveCurrentTask,
         updateTask,
         cleanCurrentTask

@@ -60,8 +60,7 @@ const FormTask = () => {
     //Check edit or add
     if (currenttask === null) {
       //Add new task to state
-      task.projectId = curProject.id;
-      task.estado = false;
+      task.project = curProject._id;
       addTask(task);
     } else {
       // Update current task selected
@@ -72,7 +71,7 @@ const FormTask = () => {
     }
 
     //Get all task
-    getTasks(curProject.id);
+    getTasks(curProject._id);
 
     //reset form
     setTask({
